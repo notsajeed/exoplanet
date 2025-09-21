@@ -6,6 +6,8 @@ sns.set(style="whitegrid", context="talk")
 
 def plot_size_vs_orbit(df):
     df = df.copy()
+    df = df.drop_duplicates(subset=["pl_name"])
+
     for col in ["pl_rade", "pl_orbper"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df.dropna(subset=["pl_rade", "pl_orbper"])
@@ -25,6 +27,8 @@ def plot_size_vs_orbit(df):
 
 def plot_mass_vs_radius(df):
     df = df.copy()
+    df = df.drop_duplicates(subset=["pl_name"])
+
     for col in ["pl_rade", "pl_masse"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df.dropna(subset=["pl_rade", "pl_masse"])
@@ -44,6 +48,8 @@ def plot_mass_vs_radius(df):
 
 def plot_discovery_trends(df):
     df = df.copy()
+    df = df.drop_duplicates(subset=["pl_name"])
+
     df["disc_year"] = pd.to_numeric(df["disc_year"], errors="coerce")
     trend = df.groupby("disc_year").size()
     trend = trend[trend.index.notna()]
@@ -58,6 +64,8 @@ def plot_discovery_trends(df):
 
 def plot_habitable_planets(df):
     df = df.copy()
+    df = df.drop_duplicates(subset=["pl_name"])
+
     for col in ["pl_rade", "pl_eqt"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df.dropna(subset=["pl_rade", "pl_eqt"])
@@ -78,6 +86,8 @@ def plot_habitable_planets(df):
 
 def plot_sky_map(df):
     df = df.copy()
+    df = df.drop_duplicates(subset=["pl_name"])
+
     for col in ["ra", "dec"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df.dropna(subset=["ra", "dec"])
